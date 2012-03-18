@@ -59,6 +59,15 @@ foreign key(usuario) references usuarios(codigo),
 
 create index Ixdata on transacoes(data);
 
+create view precomedio as
+select a.nome as acao,AVG(t.valor_unitario) as media
+from transacoes as t join acoes as a on t.acao = a.codigo
+where t.tipo = 1 and t.data = GETDATE()
+group by a.nome
+
+
+
+
 
 
 
